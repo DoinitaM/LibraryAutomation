@@ -2,8 +2,8 @@
 Feature: As a data consumer, I want the user information are stored in mySql DB correctly in users table. DM
 
 
-  Background:
-    Given Establish the database connection DM
+  -- Background:
+ --   Given Establish the database connection DM
 
   Scenario: verify users has unique IDs DM
     When Execute query to get all IDs from users DM

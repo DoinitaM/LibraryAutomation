@@ -11,13 +11,13 @@ import java.util.List;
 
 public class UserStory1_DM_Defs {
    String allId;
+List<String> actualColumns;
+  //  @Given("Establish the database connection DM")
+ //   public void establish_the_database_connection_dm() {
 
-    @Given("Establish the database connection DM")
-    public void establish_the_database_connection_dm() {
+   //     DB_Util.createConnection();
 
-        DB_Util.createConnection();
-
-    }
+  //  }
 
     @When("Execute query to get all IDs from users DM")
     public void execute_query_to_get_all_i_ds_from_users_dm() {
@@ -39,6 +39,27 @@ String allDistinctId = DB_Util.getFirstRowFirstColumn();
         System.out.println(allDistinctId);
 
         Assert.assertEquals(allDistinctId, allId);
+    }
+//////////////////////////////////////////////////////////////
+
+
+    @When("Execute query to get all columns DM")
+    public void execute_query_to_get_all_columns_dm() {
+        DB_Util.runQuery("select * from users");
+actualColumns = DB_Util.getAllColumnNamesAsList();
+        System.out.println(actualColumns);
+
+    }
+
+    @Then("verify the below columns are listed in result DM")
+    public void verify_the_below_columns_are_listed_in_result_dm(List<String> expectedColumns) {
+
+        System.out.println(expectedColumns);
+
+Assert.assertEquals(expectedColumns, actualColumns);
+
+
+
     }
 
 

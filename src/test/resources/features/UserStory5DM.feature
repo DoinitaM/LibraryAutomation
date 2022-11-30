@@ -1,7 +1,9 @@
 
-@wip @db
+ @db
 
 Feature: As a librarian, I want to know what genre of books is being borrowed the most DM
+
+  @wip
   Scenario: verify the common book genre that’s being borrowed DM
     Given Establish the database connection DM
     When I execute query to find most popular book genre DM
