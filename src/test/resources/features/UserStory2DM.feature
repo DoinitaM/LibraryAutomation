@@ -1,4 +1,4 @@
-@wip @db
+ @db
 
 Feature: As a librarian, I want to know borrowed books number DM
 
