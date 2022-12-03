@@ -19,7 +19,7 @@ LoginPage loginPage = new LoginPage();
 DashBoardPage dashBoardPage = new DashBoardPage();
 BookPage bookPage = new BookPage();
 List<String> actualCategoryList;
-
+    String bookName;
 
     @Given("I login as a librarian DM")
     public void i_login_as_a_librarian_dm() {
@@ -43,6 +43,9 @@ dashBoardPage.navigateModule(module);
 
         //missing
        BrowserUtil.waitForClickablility(bookPage.editBook(bookName), 5).click();
+       //added this
+        this.bookName = bookName;
+
     }
 
     @Then("book information must match the Database DM")
@@ -51,28 +54,47 @@ dashBoardPage.navigateModule(module);
 
         BrowserUtil.waitFor(4);
         System.out.println("-----Assertion step-----");
-        System.out.println(bookPage.bookName.getText());//won't run anything
+       // System.out.println(bookPage.bookName.getText());//won't run anything
         System.out.println("getAttribute(value)--> "+bookPage.bookName.getAttribute("value"));
 
 
         String actualBookName = bookPage.bookName.getAttribute("value");
         String actualAuthorName = bookPage.author.getAttribute("value");
         String actualYear = bookPage.year.getAttribute("value");
+        ////
+      //  String actualCategory = bookPage.bookCategory.getAttribute("value");
+        BrowserUtil.waitFor(3);
+        String actualBookCategory = bookPage.getSelectedOption(bookPage.bookCategoryDropdown);
+        String actualDescription = bookPage.description.getAttribute("value");
 
         BrowserUtil.waitFor(4);
-        DB_Util.runQuery("select name, author,year from books where name='Chordeiles minor'");
+     //   DB_Util.runQuery("select name, author,year from books where name='Chordeiles minor'");
+
+        String query = "select b.name as BookName, author, isbn, year, bc.name as BookCategory, b.description as description from books b inner join book_categories bc on b.book_category_id = bc.id where b.name = '"+bookName+"'";
+DB_Util.runQuery(query);
 
         Map<String, String> bookInfo = DB_Util.getRowMap(1);
+
         System.out.println("---- DATA FROM DATABASE ---- ");
-        String expectedBookName = bookInfo.get("name");
+        String expectedBookName = bookInfo.get("BookName");
+        System.out.println(expectedBookName);
         String expectedAuthorName = bookInfo.get("author");
+        System.out.println(expectedAuthorName);
         String expectedYear = bookInfo.get("year");
+        System.out.println(expectedYear);
+        String expectedBookCategory = bookInfo.get("BookCategory");
+        System.out.println(expectedBookCategory);
+        String expecteDescription = bookInfo.get("description");
+        System.out.println(expecteDescription);
 
         BrowserUtil.waitFor(4);
         Assert.assertEquals(expectedBookName,actualBookName);
+
         Assert.assertEquals(expectedAuthorName,actualAuthorName);
         Assert.assertEquals(expectedYear,actualYear);
 
+        Assert.assertEquals(expectedBookCategory, actualBookCategory);
+        Assert.assertEquals(expecteDescription, actualDescription);
     }
 
     /////////////////////////////////////////////////////////////////////////////////////

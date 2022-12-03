@@ -30,3 +30,12 @@ order by 2 desc;
 select book_id,count(*) from book_borrow
 group by book_id
 order by 2 desc;
+
+
+select b.name as BookName, b.author, b.isbn, b.year, bc.name as BookCategory,
+       b.description from books b inner join book_categories bc on b.book_category_id = bc.id
+                     where b.name = 'Chordeiles minor';
+
+select b.name as BookName, author, isbn, year, bc.name as BookCategory,
+       b.description as description from books b inner join book_categories bc on b.book_category_id = bc.id
+              where b.name = 'The Scrum Field Guide';
