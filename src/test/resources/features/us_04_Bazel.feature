@@ -1,5 +1,5 @@
 Feature: As a data consumer, I want UI and DB book information are match.
-  @wip @db
+
   Scenario: Verify book information with DB
     Given NB_I login as a "librarian"
     And NB_I navigate to "Books" page

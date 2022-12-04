@@ -22,10 +22,8 @@ public class BookPage extends CommonAreaPage {
     @FindBy(name = "name")
     public WebElement bookName;
 
-
     @FindBy(xpath = "(//input[@type='text'])[4]")
     public WebElement author;
-
 
     @FindBy(name = "year")
     public WebElement year;
@@ -36,7 +34,14 @@ public class BookPage extends CommonAreaPage {
     @FindBy(id = "description")
     public WebElement description;
 
+    @FindBy(xpath = "//a[contains(@class, 'btn-lg')]")
+    public WebElement addBook;
 
+    @FindBy(name = "book_category_id")
+    public WebElement categoryDropDown;
+
+    @FindBy(xpath = "//button[@type='submit']")
+    public WebElement saveChangesBtn;
 
     public WebElement editBook(String book) {
         String xpath = "//td[3][.='" + book + "']/../td/a";
