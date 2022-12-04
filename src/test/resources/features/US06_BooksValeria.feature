@@ -1,4 +1,4 @@
-@wip
+
 Feature: Books module
  User Story: As a librarian, I should be able to add new books to the library
 
