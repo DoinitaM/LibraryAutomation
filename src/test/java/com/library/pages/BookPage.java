@@ -59,8 +59,8 @@ public WebElement inputIsbn;
     public WebElement bookCategory;
 
 //added this
-    @FindBy(xpath = "//a[contains(@class, 'btn-lg')]")
-    public WebElement addBook;
+ //   @FindBy(xpath = "//a[contains(@class, 'btn-lg')]")
+//    public WebElement addBook;
 
     @FindBy(name = "book_category_id")
     public WebElement categoryDropDown;
