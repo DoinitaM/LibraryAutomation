@@ -1,8 +1,7 @@
-
 Feature: Books module
  User Story: As a librarian, I should be able to add new books to the library
 
-  @db
+  @db @TS11-132 @TS11-133 @us06
 Scenario Outline: Adding new books to the library
 Given the user logged in as "librarian" vb
 When the user navigates to "Books" page vb
