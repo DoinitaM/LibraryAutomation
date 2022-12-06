@@ -387,4 +387,11 @@ public class BrowserUtil {
 
 
 
+    public static void selectByVisibleText(WebElement element, String text){
+        Select select = new Select(element);
+        select.selectByVisibleText(text);
+    }
+
+
+
 }

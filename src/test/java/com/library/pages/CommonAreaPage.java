@@ -31,6 +31,9 @@ public class CommonAreaPage {
     @FindBy(linkText = "Log Out")
     public WebElement logOutLink;
 
+    @FindBy(css = ".toast-message")
+    public WebElement toastMessage;
+
     public void logOut(){
         accountHolderName.click();
         logOutLink.click();
