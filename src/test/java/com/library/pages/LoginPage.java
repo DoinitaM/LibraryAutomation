@@ -22,7 +22,8 @@ public class LoginPage {
     @FindBy(tagName = "button")
     public WebElement loginButton;
 
-
+@FindBy(xpath="//button[text()='Sign in']")
+public WebElement loginn;
 
     public void login(String userType){
 
